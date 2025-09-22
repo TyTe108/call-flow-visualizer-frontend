@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    height: 100vh;
+  }
+}
+
+@layer components {
+  .react-flow__node-did {
+    @apply bg-blue-100 border-2 border-blue-500 rounded-lg shadow-md;
+  }
+  
+  .react-flow__node-auto_attendant {
+    @apply bg-green-100 border-2 border-green-500 rounded-lg shadow-md;
+  }
+  
+  .react-flow__node-call_queue {
+    @apply bg-purple-100 border-2 border-purple-500 rounded-lg shadow-md;
+  }
+  
+  .react-flow__node-user {
+    @apply bg-orange-100 border-2 border-orange-500 rounded-lg shadow-md;
+  }
+  
+  .react-flow__node-voicemail {
+    @apply bg-red-100 border-2 border-red-500 rounded-lg shadow-md;
+  }
+  
+  .react-flow__node-hunt_group {
+    @apply bg-yellow-100 border-2 border-yellow-500 rounded-lg shadow-md;
+  }
+
+  .react-flow__edge-path {
+    @apply stroke-gray-600;
+  }
+  
+  .react-flow__edge.selected .react-flow__edge-path {
+    @apply stroke-blue-600 stroke-2;
+  }
+}

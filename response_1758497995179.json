@@ -1,0 +1,399 @@
+{
+  "graph_id": "BBPlumbing_graph",
+  "nodes": [
+    {
+      "node_id": "did_17149707977",
+      "node_type": "did",
+      "metadata": {
+        "model_type": "did",
+        "created_from_api": true,
+        "data_keys": [
+          "domain",
+          "phonenumber",
+          "dial-rule-application",
+          "dial-rule-description",
+          "dial-rule-parameter",
+          "dial-rule-translation-destination-host",
+          "dial-rule-translation-destination-user",
+          "dial-rule-translation-source-name",
+          "enabled"
+        ],
+        "phone_number": "17149707977",
+        "domain": "BBPlumbing",
+        "status": null,
+        "dial_rule_application": "to-user-residential",
+        "destination_identifier": "400",
+        "is_active": false
+      }
+    },
+    {
+      "node_id": "aa_daytime",
+      "node_type": "auto_attendant",
+      "metadata": {
+        "model_type": "auto_attendant",
+        "created_from_api": true,
+        "data_keys": [
+          "attendant-name",
+          "user",
+          "starting-prompt",
+          "read-path",
+          "timeframes"
+        ],
+        "attendant_name": "Daytime",
+        "user": "400",
+        "starting_prompt": "Prompt_400001",
+        "time_frame": null,
+        "configured_options": [],
+        "option_count": 0,
+        "dial_by_extension_3_digit": false,
+        "dial_by_extension_4_digit": false,
+        "dial_by_extension_5_digit": false
+      }
+    },
+    {
+      "node_id": "did_17149707823",
+      "node_type": "did",
+      "metadata": {
+        "model_type": "did",
+        "created_from_api": true,
+        "data_keys": [
+          "domain",
+          "phonenumber",
+          "dial-rule-application",
+          "dial-rule-description",
+          "dial-rule-parameter",
+          "dial-rule-translation-destination-host",
+          "dial-rule-translation-destination-user",
+          "dial-rule-translation-source-name",
+          "enabled"
+        ],
+        "phone_number": "17149707823",
+        "domain": "BBPlumbing",
+        "status": null,
+        "dial_rule_application": "to-user-residential",
+        "destination_identifier": "400",
+        "is_active": false
+      }
+    },
+    {
+      "node_id": "did_17149702916",
+      "node_type": "did",
+      "metadata": {
+        "model_type": "did",
+        "created_from_api": true,
+        "data_keys": [
+          "domain",
+          "phonenumber",
+          "dial-rule-application",
+          "dial-rule-description",
+          "dial-rule-parameter",
+          "dial-rule-translation-destination-host",
+          "dial-rule-translation-destination-user",
+          "dial-rule-translation-source-name",
+          "enabled"
+        ],
+        "phone_number": "17149702916",
+        "domain": "BBPlumbing",
+        "status": null,
+        "dial_rule_application": "to-user-residential",
+        "destination_identifier": "400",
+        "is_active": false
+      }
+    },
+    {
+      "node_id": "did_17149702317",
+      "node_type": "did",
+      "metadata": {
+        "model_type": "did",
+        "created_from_api": true,
+        "data_keys": [
+          "domain",
+          "phonenumber",
+          "dial-rule-application",
+          "dial-rule-description",
+          "dial-rule-parameter",
+          "dial-rule-translation-destination-host",
+          "dial-rule-translation-destination-user",
+          "dial-rule-translation-source-name",
+          "enabled"
+        ],
+        "phone_number": "17149702317",
+        "domain": "BBPlumbing",
+        "status": null,
+        "dial_rule_application": "to-user-residential",
+        "destination_identifier": "400",
+        "is_active": false
+      }
+    },
+    {
+      "node_id": "did_17149702874",
+      "node_type": "did",
+      "metadata": {
+        "model_type": "did",
+        "created_from_api": true,
+        "data_keys": [
+          "domain",
+          "phonenumber",
+          "dial-rule-application",
+          "dial-rule-description",
+          "dial-rule-parameter",
+          "dial-rule-translation-destination-host",
+          "dial-rule-translation-destination-user",
+          "dial-rule-translation-source-name",
+          "enabled"
+        ],
+        "phone_number": "17149702874",
+        "domain": "BBPlumbing",
+        "status": null,
+        "dial_rule_application": "to-user-residential",
+        "destination_identifier": "400",
+        "is_active": false
+      }
+    },
+    {
+      "node_id": "did_16572173210",
+      "node_type": "did",
+      "metadata": {
+        "model_type": "did",
+        "created_from_api": true,
+        "data_keys": [
+          "domain",
+          "phonenumber",
+          "dial-rule-application",
+          "dial-rule-description",
+          "dial-rule-parameter",
+          "dial-rule-translation-destination-host",
+          "dial-rule-translation-destination-user",
+          "dial-rule-translation-source-name",
+          "enabled"
+        ],
+        "phone_number": "16572173210",
+        "domain": "BBPlumbing",
+        "status": null,
+        "dial_rule_application": "to-user-residential",
+        "destination_identifier": "307",
+        "is_active": false
+      }
+    },
+    {
+      "node_id": "queue_307",
+      "node_type": "call_queue",
+      "metadata": {
+        "model_type": "call_queue",
+        "created_from_api": true,
+        "data_keys": [
+          "domain",
+          "callqueue",
+          "description",
+          "callqueue-dispatch-type",
+          "callqueue-calculate-statistics",
+          "active-queued-calls-total-current",
+          "callqueue-agent-auto-logout-after-missed",
+          "callqueue-agent-dispatch-timeout-seconds",
+          "callqueue-count-agents-available",
+          "callqueue-count-agents-total",
+          "callqueue-debug",
+          "callqueue-force-full-intro-playback",
+          "callqueue-max-callback-queueing-hours",
+          "callqueue-max-current-callers-to-accept-new-callers",
+          "callqueue-max-current-wait-to-accept-new-callers-seconds",
+          "callqueue-max-wait-timeout-minutes",
+          "callqueue-require-available-agents-to-accept-new-callers",
+          "callqueue-sim-ring-1st-round",
+          "callqueue-sim-ring-increment",
+          "callqueue-sms-enable",
+          "callqueue-source-match",
+          "site",
+          "subscriber_group"
+        ],
+        "callqueue": "307",
+        "name": "307",
+        "description": "AA bypass queue",
+        "domain": "BBPlumbing",
+        "dispatch_type": "Linear",
+        "count_agents_total": 1,
+        "count_agents_available": 1,
+        "active_queued_calls_total": 0,
+        "is_accepting_new_calls": false,
+        "has_available_agents": true
+      }
+    },
+    {
+      "node_id": "user_113@BBPlumbing",
+      "node_type": "user",
+      "metadata": {
+        "model_type": "user",
+        "created_from_api": true,
+        "data_keys": [
+          "user",
+          "name-first-name",
+          "name-last-name",
+          "domain",
+          "department",
+          "site"
+        ],
+        "user_id": "113@BBPlumbing",
+        "username": null,
+        "full_name": "Lacey Hampson",
+        "email": null,
+        "domain": "BBPlumbing",
+        "account_status": null,
+        "department": "",
+        "site": "n/a",
+        "is_active": false,
+        "voicemail_enabled": false
+      }
+    },
+    {
+      "node_id": "did_18002170230",
+      "node_type": "did",
+      "metadata": {
+        "model_type": "did",
+        "created_from_api": true,
+        "data_keys": [
+          "domain",
+          "phonenumber",
+          "dial-rule-application",
+          "dial-rule-description",
+          "dial-rule-parameter",
+          "dial-rule-translation-destination-host",
+          "dial-rule-translation-destination-user",
+          "dial-rule-translation-source-name",
+          "enabled"
+        ],
+        "phone_number": "18002170230",
+        "domain": "BBPlumbing",
+        "status": null,
+        "dial_rule_application": "to-user-residential",
+        "destination_identifier": "400",
+        "is_active": false
+      }
+    },
+    {
+      "node_id": "did_17142423476",
+      "node_type": "did",
+      "metadata": {
+        "model_type": "did",
+        "created_from_api": true,
+        "data_keys": [
+          "domain",
+          "phonenumber",
+          "dial-rule-application",
+          "dial-rule-description",
+          "dial-rule-parameter",
+          "dial-rule-translation-destination-host",
+          "dial-rule-translation-destination-user",
+          "dial-rule-translation-source-name",
+          "enabled"
+        ],
+        "phone_number": "17142423476",
+        "domain": "BBPlumbing",
+        "status": null,
+        "dial_rule_application": "to-single-device",
+        "destination_identifier": null,
+        "is_active": false
+      }
+    }
+  ],
+  "edges": [
+    {
+      "edge_id": "did_17149702874-aa_daytime-to_auto_attendant",
+      "source_id": "did_17149702874",
+      "target_id": "aa_daytime",
+      "edge_type": "to_auto_attendant",
+      "metadata": {
+        "phone_number": "17149702874"
+      }
+    },
+    {
+      "edge_id": "did_16572173210-queue_307-to_queue",
+      "source_id": "did_16572173210",
+      "target_id": "queue_307",
+      "edge_type": "to_queue",
+      "metadata": {
+        "phone_number": "16572173210"
+      }
+    },
+    {
+      "edge_id": "did_17149702317-aa_daytime-to_auto_attendant",
+      "source_id": "did_17149702317",
+      "target_id": "aa_daytime",
+      "edge_type": "to_auto_attendant",
+      "metadata": {
+        "phone_number": "17149702317"
+      }
+    },
+    {
+      "edge_id": "queue_307-user_113@BBPlumbing-agent",
+      "source_id": "queue_307",
+      "target_id": "user_113@BBPlumbing",
+      "edge_type": "agent",
+      "metadata": {
+        "queue_name": "307",
+        "agent_id": "sip:113@BBPlumbing",
+        "availability": "available",
+        "dispatch_order": null
+      }
+    },
+    {
+      "edge_id": "did_17149702916-aa_daytime-to_auto_attendant",
+      "source_id": "did_17149702916",
+      "target_id": "aa_daytime",
+      "edge_type": "to_auto_attendant",
+      "metadata": {
+        "phone_number": "17149702916"
+      }
+    },
+    {
+      "edge_id": "did_17149707823-aa_daytime-to_auto_attendant",
+      "source_id": "did_17149707823",
+      "target_id": "aa_daytime",
+      "edge_type": "to_auto_attendant",
+      "metadata": {
+        "phone_number": "17149707823"
+      }
+    },
+    {
+      "edge_id": "did_18002170230-aa_daytime-to_auto_attendant",
+      "source_id": "did_18002170230",
+      "target_id": "aa_daytime",
+      "edge_type": "to_auto_attendant",
+      "metadata": {
+        "phone_number": "18002170230"
+      }
+    },
+    {
+      "edge_id": "did_17149707977-aa_daytime-to_auto_attendant",
+      "source_id": "did_17149707977",
+      "target_id": "aa_daytime",
+      "edge_type": "to_auto_attendant",
+      "metadata": {
+        "phone_number": "17149707977"
+      }
+    }
+  ],
+  "statistics": {
+    "total_nodes": 11,
+    "total_edges": 8,
+    "node_type_counts": {
+      "did": 8,
+      "auto_attendant": 1,
+      "call_queue": 1,
+      "user": 1
+    },
+    "edge_type_counts": {
+      "to_auto_attendant": 6,
+      "to_queue": 1,
+      "agent": 1
+    },
+    "connected_components": 3,
+    "isolated_nodes": 1,
+    "average_degree": 1.4545454545454546,
+    "max_degree": 6,
+    "min_degree": 0,
+    "average_in_degree": 0.7272727272727273,
+    "average_out_degree": 0.7272727272727273,
+    "density": 0.07272727272727272,
+    "call_queue_graphs_processed": 1
+  }
+}
