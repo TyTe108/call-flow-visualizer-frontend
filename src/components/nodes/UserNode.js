@@ -13,7 +13,7 @@ const UserNode = ({ data }) => {
   const voicemailEnabled = data?.voicemail_enabled;
 
   return (
-    <div className={`px-4 py-3 min-w-[200px] max-w-[250px] ${isActive ? 'bg-orange-50' : 'bg-gray-50'} border-2 ${isActive ? 'border-orange-500' : 'border-gray-400'} rounded-lg shadow-md`}>
+    <div className={`px-4 py-3 min-w-[200px] max-w-[250px] ${isActive ? 'bg-orange-50' : 'bg-gray-50'} border-2 ${isActive ? 'border-orange-500' : 'border-gray-400'} rounded-lg shadow-md cursor-pointer`}>
       <Handle type="target" position={Position.Left} className="w-3 h-3" />
       
       <div className="flex items-center gap-2 mb-2">

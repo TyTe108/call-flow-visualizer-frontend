@@ -88,11 +88,6 @@ const StatisticsPanel = ({ statistics, graphId }) => {
           </div>
         </div>
         
-        <div className="p-2 bg-green-50 rounded-md text-center">
-          <div className="text-sm font-medium text-green-800">
-            Density: {(density * 100).toFixed(1)}%
-          </div>
-        </div>
       </div>
     </div>
   );

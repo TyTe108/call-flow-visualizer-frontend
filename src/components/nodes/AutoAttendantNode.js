@@ -10,7 +10,7 @@ const AutoAttendantNode = ({ data }) => {
   const optionCount = data?.option_count || 0;
 
   return (
-    <div className="px-4 py-3 min-w-[200px] max-w-[250px] bg-green-50 border-2 border-green-500 rounded-lg shadow-md">
+    <div className="px-4 py-3 min-w-[200px] max-w-[250px] bg-green-50 border-2 border-green-500 rounded-lg shadow-md cursor-pointer">
       <Handle type="target" position={Position.Left} className="w-3 h-3" />
       
       <div className="flex items-center gap-2 mb-2">

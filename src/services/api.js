@@ -77,8 +77,8 @@ export const callFlowAPI = {
           id: node.node_id,
           type: node.node_type,
           position: { 
-            x: config.x + (Math.random() * 30 - 15), // Small random offset for visual variety
-            y: yPosition + (Math.random() * 20 - 10)
+            x: config.x,
+            y: yPosition
           },
           data: {
             ...node.metadata,
@@ -88,28 +88,68 @@ export const callFlowAPI = {
       });
     });
 
-    // Create edges with improved styling
-    const edges = backendData.edges.map(edge => ({
-      id: edge.edge_id,
-      source: edge.source_id,
-      target: edge.target_id,
-      type: 'smoothstep',
-      animated: true,
-      label: edge.edge_type.replace(/_/g, ' ').toUpperCase(),
-      labelStyle: {
-        fontSize: 10,
-        fill: '#666',
-        fontWeight: 'bold'
-      },
-      style: {
-        stroke: '#4f46e5',
-        strokeWidth: 2
-      },
-      markerEnd: {
-        type: 'arrowclosed',
-        color: '#4f46e5',
+    // Create edges with improved styling and routing
+    const edges = backendData.edges.map((edge, index) => {
+      // Determine edge type and styling based on connection type
+      let edgeColor = '#6b7280'; // Default gray
+      let edgeStyle = 'straight';
+      
+      // Color code by edge type for better visual distinction
+      switch (edge.edge_type) {
+        case 'to_auto_attendant':
+          edgeColor = '#10b981'; // Green for auto attendant connections
+          edgeStyle = 'smoothstep';
+          break;
+        case 'to_user':
+          edgeColor = '#f59e0b'; // Orange for user connections
+          edgeStyle = 'smoothstep';
+          break;
+        case 'to_queue':
+          edgeColor = '#8b5cf6'; // Purple for queue connections
+          edgeStyle = 'smoothstep';
+          break;
+        case 'agent':
+          edgeColor = '#3b82f6'; // Blue for agent connections
+          edgeStyle = 'straight';
+          break;
+        case 'to_voicemail':
+          edgeColor = '#ef4444'; // Red for voicemail connections
+          edgeStyle = 'smoothstep';
+          break;
+        default:
+          edgeColor = '#6b7280';
+          edgeStyle = 'straight';
       }
-    }));
+
+      return {
+        id: edge.edge_id,
+        source: edge.source_id,
+        target: edge.target_id,
+        type: edgeStyle,
+        animated: false, // Disable animation to reduce visual noise
+        label: edge.edge_type.replace(/_/g, ' ').toUpperCase(),
+        labelStyle: {
+          fontSize: 9,
+          fill: edgeColor,
+          fontWeight: 'bold',
+          background: 'rgba(255, 255, 255, 0.8)',
+          borderRadius: 3,
+          padding: '2px 4px'
+        },
+        style: {
+          stroke: edgeColor,
+          strokeWidth: 1.5,
+          strokeDasharray: edgeStyle === 'straight' ? '5,5' : '0', // Dashed lines for straight connections
+        },
+        markerEnd: {
+          type: 'arrowclosed',
+          color: edgeColor,
+          width: 15,
+          height: 15
+        },
+        // Remove handle specifications - let ReactFlow use default handles
+      };
+    });
 
     return { nodes, edges };
   }

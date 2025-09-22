@@ -44,6 +44,7 @@ function App() {
   const [statistics, setStatistics] = useState(null);
   const [selectedNode, setSelectedNode] = useState(null);
   const [currentGraphId, setCurrentGraphId] = useState(null);
+  const [highlightedEdges, setHighlightedEdges] = useState(new Set());
 
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
 
@@ -51,10 +52,55 @@ function App() {
     setSelectedNode(node);
   }, []);
 
+  const onNodeMouseEnter = useCallback((event, node) => {
+    // Find all edges connected to this node
+    const connectedEdges = edges
+      .filter(edge => edge.source === node.id || edge.target === node.id)
+      .map(edge => edge.id);
+    
+    setHighlightedEdges(new Set(connectedEdges));
+    
+    // Now that we've fixed the handle issue, let's implement proper highlighting
+    setEdges(currentEdges => 
+      currentEdges.map(edge => {
+        const isHighlighted = connectedEdges.includes(edge.id);
+        const shouldDim = connectedEdges.length > 0 && !isHighlighted;
+        
+        return {
+          ...edge,
+          style: {
+            ...edge.style,
+            strokeWidth: isHighlighted ? 4 : 1.5,
+            opacity: shouldDim ? 0.3 : 1,
+            stroke: isHighlighted ? '#ff0000' : edge.style?.stroke || '#6b7280',
+          }
+        };
+      })
+    );
+  }, [edges, setEdges]);
+
+  const onNodeMouseLeave = useCallback(() => {
+    setHighlightedEdges(new Set());
+    
+    // Restore original edge styles
+    setEdges(currentEdges => 
+      currentEdges.map(edge => ({
+        ...edge,
+        style: {
+          ...edge.style,
+          strokeWidth: 1.5,
+          opacity: 1,
+          stroke: edge.style?.stroke || '#6b7280',
+        }
+      }))
+    );
+  }, [setEdges]);
+
   const handleLoadGraph = useCallback(async (domain, graphId) => {
     setLoading(true);
     setError(null);
     setSelectedNode(null);
+    setHighlightedEdges(new Set());
     
     try {
       const data = await callFlowAPI.getCallFlowByDomain(domain, graphId);
@@ -72,10 +118,33 @@ function App() {
     }
   }, [setNodes, setEdges]);
 
+  // Removed edgesWithHighlighting - now handling highlighting directly in mouse events
+
   const defaultViewport = { x: 0, y: 0, zoom: 0.8 };
 
   return (
     <div className="h-screen bg-gray-100 flex flex-col">
+      {/* Custom CSS for edge highlighting */}
+      <style>
+        {`
+          .highlighted-edge {
+            stroke: #ff6b6b !important;
+            stroke-width: 4px !important;
+            opacity: 1 !important;
+          }
+          .dimmed-edge {
+            opacity: 0.2 !important;
+          }
+          .highlighted-edge .react-flow__edge-path {
+            stroke: #ff6b6b !important;
+            stroke-width: 4px !important;
+          }
+          .highlighted-edge .react-flow__edge-text {
+            fill: #ff6b6b !important;
+            font-weight: bold !important;
+          }
+        `}
+      </style>
       {/* Header */}
       <header className="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
         <div className="flex items-center justify-between">
@@ -121,6 +190,8 @@ function App() {
               onEdgesChange={onEdgesChange}
               onConnect={onConnect}
               onNodeClick={onNodeClick}
+              onNodeMouseEnter={onNodeMouseEnter}
+              onNodeMouseLeave={onNodeMouseLeave}
               nodeTypes={nodeTypes}
               defaultViewport={defaultViewport}
               fitView
