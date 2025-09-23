@@ -81,6 +81,243 @@ The application connects to your backend API at `http://localhost:8000`. Make su
 - **POST** `/graphs/domain?domain={domain}`
 - **Body**: `{ "graph_id": "your_graph_id" }`
 
+## Data Structure Examples
+
+### Backend Response Format
+
+The backend sends call flow data in the following JSON structure:
+
+```json
+{
+  "graph_id": "BBPlumbing_graph",
+  "statistics": {
+    "total_nodes": 8,
+    "total_edges": 7,
+    "node_type_counts": {
+      "did": 1,
+      "auto_attendant": 2,
+      "call_queue": 1,
+      "user": 3,
+      "voicemail": 1
+    },
+    "edge_type_counts": {
+      "to_auto_attendant": 1,
+      "to_user": 3,
+      "to_queue": 1,
+      "agent": 2
+    },
+    "connected_components": 1,
+    "isolated_nodes": 0,
+    "density": 0.25
+  },
+  "nodes": [
+    {
+      "node_id": "did_17149707977",
+      "node_type": "did",
+      "metadata": {
+        "model_type": "did",
+        "created_from_api": true,
+        "phone_number": "17149707977",
+        "domain": "BBPlumbing",
+        "dial_rule_application": "to-user-residential",
+        "destination_identifier": "400",
+        "is_active": false
+      }
+    },
+    {
+      "node_id": "aa_daytime",
+      "node_type": "auto_attendant",
+      "metadata": {
+        "model_type": "auto_attendant",
+        "created_from_api": true,
+        "attendant_name": "Daytime",
+        "user": "400",
+        "starting_prompt": "Prompt_400001",
+        "option_count": 0,
+        "dial_by_extension_3_digit": false
+      }
+    },
+    {
+      "node_id": "user_400",
+      "node_type": "user",
+      "metadata": {
+        "model_type": "user",
+        "created_from_api": true,
+        "user_id": "400",
+        "full_name": "John Smith",
+        "email": "john@bbplumbing.com",
+        "department": "Sales",
+        "is_active": true,
+        "voicemail_enabled": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "edge_id": "edge_did_to_aa",
+      "source_id": "did_17149707977",
+      "target_id": "aa_daytime",
+      "edge_type": "to_auto_attendant"
+    },
+    {
+      "edge_id": "edge_aa_to_user",
+      "source_id": "aa_daytime",
+      "target_id": "user_400",
+      "edge_type": "to_user"
+    },
+    {
+      "edge_id": "edge_user_to_vm",
+      "source_id": "user_400",
+      "target_id": "vm_400",
+      "edge_type": "to_voicemail"
+    }
+  ]
+}
+```
+
+### Frontend XYFlow Transformation
+
+The frontend transforms the backend data into XYFlow-compatible format:
+
+```javascript
+// Transformed Nodes
+{
+  nodes: [
+    {
+      id: "did_17149707977",
+      type: "did",
+      position: { x: 50, y: 100 },
+      data: {
+        phone_number: "17149707977",
+        domain: "BBPlumbing",
+        dial_rule_application: "to-user-residential",
+        destination_identifier: "400",
+        is_active: false,
+        label: "did"
+      }
+    },
+    {
+      id: "aa_daytime",
+      type: "auto_attendant",
+      position: { x: 380, y: 100 },
+      data: {
+        attendant_name: "Daytime",
+        user: "400",
+        starting_prompt: "Prompt_400001",
+        option_count: 0,
+        dial_by_extension_3_digit: false,
+        label: "auto_attendant"
+      }
+    },
+    {
+      id: "user_400",
+      type: "user",
+      position: { x: 1060, y: 100 },
+      data: {
+        user_id: "400",
+        full_name: "John Smith",
+        email: "john@bbplumbing.com",
+        department: "Sales",
+        is_active: true,
+        voicemail_enabled: true,
+        label: "user"
+      }
+    }
+  ],
+  
+  // Transformed Edges
+  edges: [
+    {
+      id: "edge_did_to_aa",
+      source: "did_17149707977",
+      target: "aa_daytime",
+      type: "smoothstep",
+      animated: false,
+      label: "TO AUTO ATTENDANT",
+      labelStyle: {
+        fontSize: 9,
+        fill: "#3b82f6",
+        fontWeight: "bold",
+        background: "rgba(255, 255, 255, 0.8)",
+        borderRadius: 3,
+        padding: "2px 4px"
+      },
+      style: {
+        stroke: "#3b82f6",
+        strokeWidth: 1.5,
+        strokeDasharray: "0"
+      },
+      markerEnd: {
+        type: "arrowclosed",
+        color: "#3b82f6",
+        width: 15,
+        height: 15
+      }
+    },
+    {
+      id: "edge_aa_to_user",
+      source: "aa_daytime",
+      target: "user_400",
+      type: "smoothstep",
+      animated: false,
+      label: "TO USER",
+      labelStyle: {
+        fontSize: 9,
+        fill: "#10b981",
+        fontWeight: "bold",
+        background: "rgba(255, 255, 255, 0.8)",
+        borderRadius: 3,
+        padding: "2px 4px"
+      },
+      style: {
+        stroke: "#10b981",
+        strokeWidth: 1.5,
+        strokeDasharray: "0"
+      },
+      markerEnd: {
+        type: "arrowclosed",
+        color: "#10b981",
+        width: 15,
+        height: 15
+      }
+    }
+  ]
+}
+```
+
+### Key Transformation Details
+
+#### Node Transformation:
+- **Backend**: `node_id` → **Frontend**: `id`
+- **Backend**: `node_type` → **Frontend**: `type` (maps to custom components)
+- **Backend**: `metadata` → **Frontend**: `data` (flattened and passed to components)
+- **Frontend**: Adds `position` coordinates for hierarchical layout
+- **Frontend**: Adds `label` field for node type identification
+
+#### Edge Transformation:
+- **Backend**: `source_id` → **Frontend**: `source`
+- **Backend**: `target_id` → **Frontend**: `target`
+- **Backend**: `edge_type` → **Frontend**: `label` (formatted as uppercase)
+- **Frontend**: Adds visual styling (colors, stroke width, markers)
+- **Frontend**: Adds edge type-specific styling (smooth vs straight lines)
+
+#### Layout Positioning:
+- **DID nodes**: Column 1 (x: 50)
+- **Auto Attendant nodes**: Column 2 (x: 380)
+- **Call Queue/Hunt Group nodes**: Column 3 (x: 730)
+- **User nodes**: Column 4 (x: 1060)
+- **Voicemail nodes**: Column 5 (x: 1360)
+- **Vertical spacing**: 180px between nodes
+- **Starting Y position**: 100px
+
+#### Color Coding:
+- **DID**: Blue (`#3b82f6`)
+- **Auto Attendant**: Green (`#10b981`)
+- **Call Queue**: Purple (`#8b5cf6`)
+- **User**: Orange (`#f59e0b`)
+- **Voicemail**: Red (`#ef4444`)
+- **Hunt Group**: Yellow (`#eab308`)
+
 ## Customization
 
 ### Adding New Node Types
