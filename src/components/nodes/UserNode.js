@@ -13,13 +13,12 @@ const UserNode = ({ data }) => {
   const voicemailEnabled = data?.voicemail_enabled;
 
   return (
-    <div className={`px-4 py-3 min-w-[200px] max-w-[250px] ${isActive ? 'bg-orange-50' : 'bg-gray-50'} border-2 ${isActive ? 'border-orange-500' : 'border-gray-400'} rounded-lg shadow-md cursor-pointer`}>
+    <div className="px-4 py-3 min-w-[200px] max-w-[250px] bg-orange-50 border-2 border-orange-500 rounded-lg shadow-md cursor-pointer">
       <Handle type="target" position={Position.Left} className="w-3 h-3" />
       
       <div className="flex items-center gap-2 mb-2">
         <User className="w-4 h-4 text-orange-600" />
         <span className="font-semibold text-sm">User</span>
-        {isActive && <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Active</span>}
       </div>
       
       <div className="space-y-2 text-xs">
@@ -53,11 +52,6 @@ const UserNode = ({ data }) => {
           </div>
         )}
         
-        {voicemailEnabled && (
-          <div className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
-            Voicemail Enabled
-          </div>
-        )}
       </div>
       
       <Handle type="source" position={Position.Right} className="w-3 h-3" />

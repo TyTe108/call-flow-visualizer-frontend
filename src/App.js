@@ -22,6 +22,7 @@ import HuntGroupNode from './components/nodes/HuntGroupNode';
 import DomainSelector from './components/DomainSelector';
 import StatisticsPanel from './components/StatisticsPanel';
 import NodeDetailsPanel from './components/NodeDetailsPanel';
+import LegendPanel from './components/LegendPanel';
 
 // API Service
 import { callFlowAPI } from './services/api';
@@ -70,9 +71,9 @@ function App() {
           ...edge,
           style: {
             ...edge.style,
-            strokeWidth: isHighlighted ? 4 : 1.5,
+            strokeWidth: isHighlighted ? 3 : 1.5,
             opacity: shouldDim ? 0.3 : 1,
-            stroke: isHighlighted ? '#ff0000' : edge.style?.stroke || '#6b7280',
+            stroke: edge.style?.stroke || '#6b7280',
           }
         };
       })
@@ -177,6 +178,8 @@ function App() {
           )}
 
           <StatisticsPanel statistics={statistics} graphId={currentGraphId} />
+          
+          <LegendPanel />
         </div>
 
         {/* Main Content Area */}

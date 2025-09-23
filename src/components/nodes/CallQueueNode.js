@@ -14,13 +14,12 @@ const CallQueueNode = ({ data }) => {
   const isAcceptingNewCalls = data?.is_accepting_new_calls;
 
   return (
-    <div className={`px-4 py-3 min-w-[200px] max-w-[250px] ${isAcceptingNewCalls ? 'bg-purple-50' : 'bg-gray-50'} border-2 ${isAcceptingNewCalls ? 'border-purple-500' : 'border-gray-400'} rounded-lg shadow-md cursor-pointer`}>
+    <div className="px-4 py-3 min-w-[200px] max-w-[250px] bg-purple-50 border-2 border-purple-500 rounded-lg shadow-md cursor-pointer">
       <Handle type="target" position={Position.Left} className="w-3 h-3" />
       
       <div className="flex items-center gap-2 mb-2">
         <Users className="w-4 h-4 text-purple-600" />
         <span className="font-semibold text-sm">Call Queue</span>
-        {isAcceptingNewCalls && <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Accepting</span>}
       </div>
       
       <div className="space-y-2 text-xs">

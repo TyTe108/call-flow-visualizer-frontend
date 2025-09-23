@@ -9,13 +9,12 @@ const DidNode = ({ data }) => {
   const destination = data?.destination_identifier;
 
   return (
-    <div className={`px-4 py-2 min-w-[200px] max-w-[250px] ${isActive ? 'bg-blue-50' : 'bg-gray-50'} border-2 ${isActive ? 'border-blue-500' : 'border-gray-400'} rounded-lg shadow-md cursor-pointer`}>
+    <div className="px-4 py-2 min-w-[200px] max-w-[250px] bg-blue-50 border-2 border-blue-500 rounded-lg shadow-md cursor-pointer">
       <Handle type="target" position={Position.Left} className="w-3 h-3" />
       
       <div className="flex items-center gap-2 mb-2">
         <Phone className="w-4 h-4 text-blue-600" />
         <span className="font-semibold text-sm">DID</span>
-        {isActive && <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Active</span>}
       </div>
       
       <div className="space-y-1 text-xs">

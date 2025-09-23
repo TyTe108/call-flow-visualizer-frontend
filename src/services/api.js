@@ -97,11 +97,11 @@ export const callFlowAPI = {
       // Color code by edge type for better visual distinction
       switch (edge.edge_type) {
         case 'to_auto_attendant':
-          edgeColor = '#10b981'; // Green for auto attendant connections
+          edgeColor = '#3b82f6'; // Blue for routing to auto attendant
           edgeStyle = 'smoothstep';
           break;
         case 'to_user':
-          edgeColor = '#f59e0b'; // Orange for user connections
+          edgeColor = '#10b981'; // Green for direct user connections
           edgeStyle = 'smoothstep';
           break;
         case 'to_queue':
@@ -109,7 +109,7 @@ export const callFlowAPI = {
           edgeStyle = 'smoothstep';
           break;
         case 'agent':
-          edgeColor = '#3b82f6'; // Blue for agent connections
+          edgeColor = '#f59e0b'; // Orange for agent relationships
           edgeStyle = 'straight';
           break;
         case 'to_voicemail':
